@@ -10,9 +10,6 @@ mips 		 	proc(
 			.reset(i_rst)
 		        );
 
-//initial begin
-
-//end
 
 initial begin
     i_clk = 0;

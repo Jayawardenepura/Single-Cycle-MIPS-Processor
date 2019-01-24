@@ -1,4 +1,5 @@
-`define ROM_FILE  "firmware/pr2.bin"
+//`define ROM_FILE  "firmware/sample1.dat"
+`define ROM_FILE  "firmware/sample2.bin"
 
 `ifndef __ROM__
 `define __ROM__
@@ -21,7 +22,7 @@ initial begin : INIT
   for (i=0; i<ROM_BLOCKS_NUM; i=i+1) begin
     rom_mem[i] = ROM_DEFLT_DATA;
   end
-  $readmemb(`ROM_FILE, rom_mem);
+  $readmemh(`ROM_FILE, rom_mem);
 end
 
 // read logic

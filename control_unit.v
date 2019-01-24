@@ -172,4 +172,5 @@ always @(i_opCode) begin
     
   endcase
 end
+
 endmodule

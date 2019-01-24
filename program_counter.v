@@ -16,6 +16,7 @@ always @(posedge i_clk,negedge i_arstn) begin
 	end
 end
 
-assign address={pc,2'b00};
+/* The address of the next instruction*/
+assign address={pc,2'b00}; 
 
 endmodule 

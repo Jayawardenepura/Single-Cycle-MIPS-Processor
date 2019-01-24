@@ -2,14 +2,14 @@ module mips(clk, reset);
 
 input 		clk, reset; 
 
-wire 			RegWrite;
-wire		 	[31:0] pc_out; 
-wire			[29:0] pc_in;
-wire			[29:0] adder_in, adder_out;
+wire		 	[31:0] 	pc_out; 
+wire			[29:0] 	pc_in;
+wire			[29:0] 	adder_in, adder_out;
 
-wire 			[4:0]  read_register_RA, read_register_RB, read_register_RW;
-wire			[31:0] instr_addr,instruction;
-wire 			[31:0] BusW, bus_A_out, bus_B_out;
+wire 						i_RegWrite;
+wire			[4:0]		i_reg_R_aaddr, i_reg_R_baddr, i_reg_R_wdata;
+wire			[31:0]	instr_addr,instruction;
+wire 			[31:0]	i_reg_BusW_data, o_bus_A_out, o_bus_B_out;
 
 wire			[31:0] alu_A,alu_B,alu_result; /* alu */
 wire			[4:0]  shift_amount;
@@ -20,23 +20,23 @@ wire					 o_flag_zero;
 wire			[5:0]  opcode, funct;
 wire			[3:0]	 alu_control_unit;
 
-wire			[4:0]  i_rt_mux, i_rd_mux, j_r_muxout; /* 1st mux */
-wire					 RegDst;
+wire			[4:0]  i_rt_mux, i_rd_mux, j_r_muxout; 
+wire					 i_RegDst;
 
-wire 			[15:0] word2extend;	/* sing enxtend */
+wire 			[15:0] word2extend;	
 wire			[31:0] extended_word;
-wire					 ExtOp;
+wire					 i_ExtOp;
 
-wire			[31:0] extend, non_extend, mux32bit_to_alu; /* 2nd mux */
-wire 					 ALUSrc;
+wire			[31:0] extend, non_extend, mux32bit_to_alu; 
+wire					 i_ALUSrc;
 
-wire			[31:0] i_datamem_addr, i_datamem_data,o_datamem_dataout;
-wire					 MemWrite;
+wire			[31:0] i_datamem_addr, i_datamem_data,o_memdata;
+wire					 i_MemWrite;
 
-wire			[31:0] alu_path0, mem_path1, o_to_BusW; /* 3rd mux */
-wire				 	 MemtoReg;
+wire			[31:0] alu_path0, mem_path1, o_to_BusW; 
+wire					 i_MemtoReg;
 
-/* DC control */
+/* Control signals*/
 wire     	[5:0]  i_opCode;
 wire					 o_regDst;
 wire     			 o_regWrite;
@@ -48,15 +48,15 @@ wire      		 	 o_aluSrc;
 wire      			 o_memWrite;
 wire      			 o_memToReg;
 
-/* Next PC for branches & jumps */
-wire					 beg, bne, j, br_o_flag_zero;
-wire			[29:0] inc_pc; 
-wire			[25:0] imm26; 
-wire					 pcsrc;
-wire			[29:0] br_target;
+/* branches & jumps zone*/
+wire					 	i_beq, i_bne, i_j, br_o_flag_zero;
+wire			[29:0] 	inc_pc; 
+wire			[25:0] 	imm26; 
+wire						PCSrc;
+wire			[29:0] 	br_target;
 
-wire			[29:0] br_sel0, br_sel1, next_instr; 
-wire			sel_pc;
+wire			[29:0]	br_sel0, br_sel1, next_instr; 
+wire						sel_pc;
 
 control_unit		 	control(i_opCode, 
 										o_regDst, 
@@ -69,101 +69,99 @@ control_unit		 	control(i_opCode,
 										o_memWrite, 
 										o_memToReg);
 
-pc_adder			 	 	adder(adder_in, adder_out);
+pc_adder					adder(adder_in, adder_out);
 
-program_counter	 	PC(pc_in, pc_out, 
+program_counter		PC(pc_in, pc_out, 
 								clk, reset);
 								
-instruction_mem 	 	instr_mem(instr_addr, instruction);
+instruction_mem		instr_mem(instr_addr, instruction);
 
-register_file 	    	reg_file(read_register_RA, read_register_RB, read_register_RW, 
-										BusW, RegWrite,
-										bus_A_out, bus_B_out,
-										clk, reset);
-ALU32Bit 		 		ALU(alu_A, alu_B,shift_amount, alu_result,
+register_file			register_file(i_reg_R_aaddr, i_reg_R_baddr, 
+												i_reg_R_wdata, i_reg_BusW_data,
+												o_bus_A_out, o_bus_B_out,
+												i_RegWrite,clk);
+										
+ALU32Bit					ALU(alu_A, alu_B,shift_amount, alu_result,
 									alu_control,
 									o_flag_zero);
 									
 alu_control				ALU_control(opcode, funct, alu_control_unit);
 									
-mux2inputs_to_5bit 	rt_rd_mux2_5(i_rt_mux, i_rd_mux, 
-									RegDst, j_r_muxout);
+mux2inputs_to_5bit	mux_R_J_select(i_rt_mux, i_rd_mux, 
+									i_RegDst, j_r_muxout);
 
-sign_extension 	 	extendor(word2extend, extended_word, 
-										ExtOp);
+sign_extension			extend_word(word2extend, extended_word, 
+									i_ExtOp);
 
-mux2inputs_to_32bit 	BUS_B_extend_mux2_32(non_extend, extend, 
-									  ALUSrc, mux32bit_to_alu);
+mux2inputs_to_32bit	BUS_B_extend_mux2_32(non_extend, extend, 
+									  i_ALUSrc, mux32bit_to_alu);
 
-data_memory 			MEMORY(i_datamem_addr, i_datamem_data, 
-										o_datamem_dataout,
-										MemWrite, 
+data_memory				memory(i_datamem_addr, i_datamem_data, 
+										o_memdata,
+										i_MemWrite, 
 										clk);
 
-mux2inputs_to_32bit 	alu_or_mem_mux2_5extreme(alu_path0, mem_path1, 
-												MemtoReg, o_to_BusW);
+mux2inputs_to_32bit	mux_to_BUS_wdata(alu_path0, mem_path1, 
+												i_MemtoReg, o_to_BusW);
 
-Next_PC					NEXT_PC(beg, bne, j, br_o_flag_zero,
+Next_PC					NEXT_PC(i_beq, i_bne, i_j, br_o_flag_zero,
 									 inc_pc, imm26, 
-									 pcsrc, br_target);												
+									 PCSrc, br_target);												
 
-mux2inputs_to_30bit  brunch_mux(br_sel0 ,br_sel1, sel_pc, next_instr);
+mux2inputs_to_30bit	brunch_mux(br_sel0 ,br_sel1, sel_pc, next_instr);
 											
-assign adder_in 			  = pc_out[31:2];
-
-assign instr_addr 		  = pc_out;
+assign adder_in				= pc_out[31:2];
+assign instr_addr				= pc_out;
 
 /* in out of reg file assigments*/
-assign read_register_RA   = instruction[25:21]; /* rs */
-assign read_register_RB   = instruction[20:16]; /* rt */
-assign i_rt_mux 			  = instruction[20:16]; /* rt */
-assign read_register_RW   = j_r_muxout; 
-assign i_rd_mux 			  = instruction[15:11]; /* rd */
+assign i_reg_R_aaddr			= instruction[25:21]; /* rs */
+assign i_reg_R_baddr			= instruction[20:16]; /* rt */
+assign i_rt_mux				= instruction[20:16]; /* rt */
+assign i_reg_R_wdata			= j_r_muxout; 
+assign i_rd_mux				= instruction[15:11]; /* rd */
 
-assign alu_A				  = bus_A_out;
-assign shift_amount		  = instruction[9:5];/* sa shift amount is connected into alu directly*/
-assign word2extend 		  = instruction[15:0];
+assign alu_A					= o_bus_A_out;
+assign shift_amount			= instruction[9:5];/* sa shift amount is connected into alu directly*/
+assign word2extend			= instruction[15:0];
 
-assign non_extend  		  = bus_B_out;
-assign extend 				  = extended_word;
-assign alu_B 				  = mux32bit_to_alu;
+assign non_extend				= o_bus_B_out;
+assign extend					= extended_word;
+assign alu_B					= mux32bit_to_alu;
 
-assign i_datamem_data 	  = bus_B_out;
-assign alu_path0 		 	  = alu_result;
-assign i_datamem_addr	  = alu_result;
+assign i_datamem_data		= o_bus_B_out;
+assign alu_path0				= alu_result;
+assign i_datamem_addr		= alu_result;
 
-assign mem_path1 		 	  = o_datamem_dataout;
-assign BusW 				  = o_to_BusW;
+assign mem_path1				= o_memdata;
+assign i_reg_BusW_data		= o_to_BusW;
 
-assign i_opCode 			  = instruction[31:26]; 	
+assign i_opCode				= instruction[31:26]; 	
 
-assign funct				  = extended_word[5:0];//instruction[5:0];
-assign opcode 				  = i_opCode;
-assign alu_control		  = alu_control_unit;	  
+assign funct					= extended_word[5:0];//instruction[5:0];
+assign opcode					= i_opCode;
+assign alu_control			= alu_control_unit;	  
  
 /* control decoder assigments*/
-assign RegDst             = o_regDst;	
-assign RegWrite           = o_regWrite; 
-assign ExtOp              = o_extOp; 	
-assign ALUSrc             = o_aluSrc; 	
-assign MemWrite           = o_memWrite; 
-assign MemtoReg           = o_memToReg; 
+assign i_RegDst				= o_regDst;	
+assign i_RegWrite				= o_regWrite; 
+assign i_ExtOp					= o_extOp; 	
+assign i_ALUSrc				= o_aluSrc; 	
+assign i_MemWrite				= o_memWrite; 
+assign i_MemtoReg				= o_memToReg; 
 
-/* jump,branch handler assigments*/
-assign j						  = o_jump; 
-assign beg					  = o_beq; 
-assign bne					  = o_bne;
+/* jump & branch handler assigments*/
+assign i_j							= o_jump; 
+assign i_beq						= o_beq; 
+assign i_bne						= o_bne;
  
-assign br_o_flag_zero	  = o_flag_zero;
+assign br_o_flag_zero		= o_flag_zero;
 
-assign br_sel0 			  = adder_out;
-assign br_sel1 			  = br_target;
-assign sel_pc  			  = pcsrc;
+assign br_sel0					= adder_out;
+assign br_sel1					= br_target;
+assign sel_pc					= PCSrc;
 
-
-assign inc_pc				  = adder_out;
-assign imm26				  = instruction[25:0];
-assign pc_in 				  = next_instr;
-
+assign inc_pc					= adder_out;
+assign imm26					= instruction[25:0];
+assign pc_in					= next_instr;
 
 endmodule

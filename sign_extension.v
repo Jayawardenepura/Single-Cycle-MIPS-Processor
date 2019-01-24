@@ -8,5 +8,5 @@ module sign_extension(i_word, o_extended_word, i_SIGH);
  output reg [31:0] o_extended_word;    
 
  always@*
-	o_extended_word = (i_word[15] || i_SIGH) ? {16'hffff, i_word} : {16'h0000, i_word};
+	o_extended_word = (i_word[15] && i_SIGH) ? {16'hffff, i_word} : {16'h0000, i_word};
 endmodule

@@ -23,6 +23,7 @@ end
 
 assign i_ddir_feedback = DDIR;
 assign i_din_feedback = DIN;
+
 genvar i;
 generate
 	for (i = 0; i < 32; i = i + 1) begin: tri_state

@@ -1,9 +1,9 @@
 module alu_control(i_opcode, i_funct, o_alu_func);
 
-input 		 [5:0] i_opcode,i_funct;
-output reg 	 [3:0] o_alu_func;
+input 		 	[5:0] i_opcode,i_funct;
+output reg 	 	[3:0] o_alu_func;
 
-reg 			 [11:0] control;
+reg			[11:0] control;
 
 always @* begin
 	control = {i_opcode, i_funct};
@@ -102,6 +102,15 @@ always @* begin
 				o_alu_func = 4'b1000;
 			end
 
+			/* SLT */
+			12'b000000101010: begin
+				o_alu_func = 4'b0100;
+			end
+			
+			/* SLTI */
+			12'b001010??????: begin
+				o_alu_func = 4'b0100;
+			end			
 
 			default: begin
 				o_alu_func = 4'bx;

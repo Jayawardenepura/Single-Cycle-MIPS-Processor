@@ -2,7 +2,7 @@ module ALU32Bit(i_A, i_B, i_Shift_amount, o_ALU_result, i_ALUCtrl, o_flag_zero);
 
 input					[3:0] i_ALUCtrl;
 
-input signed 		[31:0] i_A;
+input  				[31:0] i_A;
 input 				[31:0] i_B;	   
 input					[4:0] i_Shift_amount;
 
@@ -12,6 +12,7 @@ output  reg  		o_flag_zero;
 reg 					[3:0] AND,OR,NOR,XOR;
 reg 					[3:0] ADD,SUB;
 reg 					[3:0] SLL,SRL,SRA;
+reg 					[3:0] SLT;
 
 initial begin	
 	/* Alu selection('10') + Arifmetic operation */
@@ -28,6 +29,9 @@ initial begin
 	SLL  = 4'b0000;
 	SRL  = 4'b0001;
 	SRA  = 4'b0010;
+	
+	SLT  = 4'b0100;
+	
 end
 	
 always @* begin
@@ -48,6 +52,8 @@ casez (i_ALUCtrl)
 	SRL: o_ALU_result = i_A >> (i_Shift_amount);
 	SRA: o_ALU_result = i_A >>> (i_Shift_amount);
  	
+	SLT: o_ALU_result = (i_A < i_B) ? 32'h1 : 32'h0;
+	
 	default: begin
 			o_ALU_result = 32'hz;
 		end
@@ -58,4 +64,3 @@ always @(o_ALU_result)
 	o_flag_zero = (o_ALU_result == 32'h0) ? 1'b1 : 1'b0;
 
 endmodule
-

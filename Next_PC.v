@@ -22,8 +22,7 @@ always @* begin
 end
 
 always @* begin
-if (i_j) 
-	begin 
+if (i_j) begin 
 		o_target = {i_incPc[29:26], i_Imm26};
 	end else begin
 		o_target = addr;

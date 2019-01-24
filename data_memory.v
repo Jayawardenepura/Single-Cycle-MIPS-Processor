@@ -1,7 +1,7 @@
 module data_memory(i_addr,i_data,o_data,i_memwr,i_clk);
 
 parameter DATA_WIDTH = 32;
-parameter ADDR_WIDTH = 5; //32 4-byte words
+parameter ADDR_WIDTH = 7; 
 
 localparam RAM_DEPTH = 2**ADDR_WIDTH;
 
