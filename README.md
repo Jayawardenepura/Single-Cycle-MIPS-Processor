@@ -1,5 +1,6 @@
 # Single-Cycle-MIPS-Processor
 
-Simple non-commercial implementation of the MIPS architecture with branches and jumps
+32-bit MIPS processor implemented in Verilog code
 
 Run testbench **vsim -do sim.do**
+
