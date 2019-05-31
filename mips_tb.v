@@ -10,7 +10,6 @@ mips 		 	proc(
 			.reset(i_rst)
 		        );
 
-
 initial begin
     i_clk = 0;
     forever #(PERIOD/2) i_clk = ~i_clk;
@@ -25,8 +24,8 @@ initial begin
 
     @(negedge i_clk) i_rst = 1;
 
-    //repeat (50) @(negedge clk);    
-    repeat (32) @(posedge i_clk);
+	/* 300 tacts produces */
+    repeat (300) @(posedge i_clk);
 
     $stop;
 end

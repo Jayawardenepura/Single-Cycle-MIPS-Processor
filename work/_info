@@ -1,0 +1,297 @@
+m255
+K4
+z2
+13
+cModel Technology
+Z0 d/home/jayawar/Downloads/Single-Cycle-MIPS-Processor
+!s112 0.1
+!i10d 8192
+!i10e 25
+!i10f 100
+vALU32Bit
+Z1 V`JN@9S9cnhjKRR_L]QIcM3
+r1
+31
+Ick3RkaXZZk>nQZZ[GZEFK1
+Z2 d/home/jayawar/Downloads/Single-Cycle-MIPS-Processor
+Z3 w1558907425
+8ALU32Bit.v
+FALU32Bit.v
+L0 1
+Z4 OL;L;10.2c;57
+Z5 !s108 1559334423.277401
+Z6 !s107 mux2inputs_to_30bit.v|Next_PC.v|sign_extension.v|register_file.v|program_counter.v|pc_adder.v|mux2inputs_to_5bit.v|instruction_mem.v|data_memory.v|control_unit.v|mux2inputs_to_32bit.v|alu_control.v|ALU32Bit.v|mips.v|mips_tb.v|
+Z7 !s90 -reportprogress|300|mips_tb.v|mips.v|ALU32Bit.v|alu_control.v|mux2inputs_to_32bit.v|control_unit.v|data_memory.v|instruction_mem.v|mux2inputs_to_5bit.v|pc_adder.v|program_counter.v|register_file.v|sign_extension.v|Next_PC.v|mux2inputs_to_30bit.v|
+Z8 o-L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+n@a@l@u32@bit
+!s85 0
+!i10b 1
+!s100 >Vie[EP_>6R7?01SW_1Gk2
+!i111 0
+valu_control
+R1
+r1
+31
+IBazGXk5MCI7^FDg7IOO6;3
+R2
+R3
+8alu_control.v
+Falu_control.v
+L0 1
+R4
+R5
+R6
+R7
+R8
+!s85 0
+!i10b 1
+!s100 YHGMHzHQW_7@N<Z6ZLBcn0
+!i111 0
+vcontrol_unit
+R1
+r1
+31
+I^aUdIWh2:3jPLcLfoUFLS2
+R2
+R3
+8control_unit.v
+Fcontrol_unit.v
+L0 1
+R4
+R5
+R6
+R7
+R8
+!s85 0
+!i10b 1
+!s100 F:PzXMLCjVe<eeEmNL9=K3
+!i111 0
+vdata_memory
+R1
+r1
+31
+IVZW;zTcBJ_7iT7nD2<?:?1
+R2
+R3
+8data_memory.v
+Fdata_memory.v
+L0 1
+R4
+R5
+R6
+R7
+R8
+!s85 0
+!i10b 1
+!s100 UK?XSCJa@MOnZSBYPmDF73
+!i111 0
+vinstruction_mem
+R1
+r1
+31
+IWFKBI]>l?JNP[6JmoY?8Y1
+R2
+w1559334280
+8instruction_mem.v
+Finstruction_mem.v
+L0 5
+R4
+R5
+R6
+R7
+R8
+!s85 0
+!i10b 1
+!s100 LX2=azCWeHNkI@E8O?g;Y3
+!i111 0
+vmips
+R1
+r1
+31
+IA0JaHh2NK>=Tej:[^nYLI3
+R2
+R3
+8mips.v
+Fmips.v
+L0 1
+R4
+R5
+R6
+R7
+R8
+!s85 0
+!i10b 1
+!s100 m^k:;eS9f0=<ZAConGACD2
+!i111 0
+vmux2inputs_to_30bit
+R1
+r1
+!s85 0
+31
+Ind9f6K@mJ9:75^P3Q<=@:0
+R2
+R3
+8mux2inputs_to_30bit.v
+Fmux2inputs_to_30bit.v
+L0 1
+R4
+R5
+R6
+R7
+R8
+!i10b 1
+!s100 JO37U85_bJeIDdXPi:75z2
+!i111 0
+vmux2inputs_to_32bit
+R1
+r1
+31
+IJ:MTA]_PUJ6Ankc]lkl`00
+R2
+R3
+8mux2inputs_to_32bit.v
+Fmux2inputs_to_32bit.v
+L0 1
+R4
+R5
+R6
+R7
+R8
+!s85 0
+!i10b 1
+!s100 dJO@k1?9zQA`;0Yn_;>Ra1
+!i111 0
+vmux2inputs_to_5bit
+R1
+r1
+31
+I`OEn8Scn?=^6Uo1Jidc0]2
+R2
+R3
+8mux2inputs_to_5bit.v
+Fmux2inputs_to_5bit.v
+L0 1
+R4
+R5
+R6
+R7
+R8
+!s85 0
+!i10b 1
+!s100 o@iBio0KgO4<z36ReW;6:3
+!i111 0
+vNext_PC
+R1
+r1
+31
+IBP3InVCeZkUlB4mW^mmNO0
+R2
+R3
+8Next_PC.v
+FNext_PC.v
+L0 1
+R4
+R5
+R6
+R7
+R8
+n@next_@p@c
+!s85 0
+!i10b 1
+!s100 5_Io<Rj2dA`PMZ>8goX2X2
+!i111 0
+vpc_adder
+R1
+r1
+31
+Iad:KNLd7;0PWg11glado42
+R2
+R3
+8pc_adder.v
+Fpc_adder.v
+L0 1
+R4
+R5
+R6
+R7
+R8
+!s85 0
+!i10b 1
+!s100 ca6a<6WZ^aB=X`gTBMfBM3
+!i111 0
+vprogram_counter
+R1
+r1
+31
+IjHoH<M3z7SeIAMilMAJ8W2
+R2
+w1558947747
+8program_counter.v
+Fprogram_counter.v
+L0 1
+R4
+R5
+R6
+R7
+R8
+!s85 0
+!i10b 1
+!s100 ^=3V?Ccjgha9=RWUAfG=a0
+!i111 0
+vregister_file
+R1
+r1
+31
+IO<Y_TmeOG`THa^l:T<_U:3
+R2
+R3
+8register_file.v
+Fregister_file.v
+L0 1
+R4
+R5
+R6
+R7
+R8
+!s85 0
+!i10b 1
+!s100 7i6OVdD3menB>oGZSUb303
+!i111 0
+vsign_extension
+R1
+r1
+31
+IT[9UTnogBLjT0R1@fHa>H3
+R2
+R3
+8sign_extension.v
+Fsign_extension.v
+L0 1
+R4
+R5
+R6
+R7
+R8
+!s85 0
+!i10b 1
+!s100 i6>]9RP009^QT0XFc@8co1
+!i111 0
+vtestbench
+R1
+r1
+31
+I^QVKZm0VmEff4@;3DjV^N0
+R2
+w1559334375
+8mips_tb.v
+Fmips_tb.v
+L0 3
+R4
+R5
+R6
+R7
+R8
+!s85 0
+!i10b 1
+!s100 ?:?iBbj129R[COCERh_0;2
+!i111 0

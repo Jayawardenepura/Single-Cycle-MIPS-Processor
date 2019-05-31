@@ -1,0 +1,68 @@
+# //  ModelSim SE-64 10.2c Jul 18 2013 Linux 4.20.17-1-MANJARO
+# //
+# //  Copyright 1991-2013 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# do sim.do 
+# Model Technology ModelSim SE-64 vlog 10.2c Compiler 2013.07 Jul 18 2013
+# -- Compiling module testbench
+# -- Compiling module mips
+# -- Compiling module ALU32Bit
+# -- Compiling module alu_control
+# -- Compiling module mux2inputs_to_32bit
+# -- Compiling module control_unit
+# -- Compiling module data_memory
+# -- Compiling module instruction_mem
+# -- Compiling module mux2inputs_to_5bit
+# -- Compiling module pc_adder
+# -- Compiling module program_counter
+# -- Compiling module register_file
+# -- Compiling module sign_extension
+# -- Compiling module Next_PC
+# -- Compiling module mux2inputs_to_30bit
+# 
+# Top level modules:
+# 	testbench
+# vsim -novopt work.testbench 
+# Refreshing /home/jayawar/Downloads/Single-Cycle-MIPS-Processor/work.testbench
+# Loading work.testbench
+# Refreshing /home/jayawar/Downloads/Single-Cycle-MIPS-Processor/work.mips
+# Loading work.mips
+# Refreshing /home/jayawar/Downloads/Single-Cycle-MIPS-Processor/work.control_unit
+# Loading work.control_unit
+# Refreshing /home/jayawar/Downloads/Single-Cycle-MIPS-Processor/work.pc_adder
+# Loading work.pc_adder
+# Refreshing /home/jayawar/Downloads/Single-Cycle-MIPS-Processor/work.program_counter
+# Loading work.program_counter
+# Refreshing /home/jayawar/Downloads/Single-Cycle-MIPS-Processor/work.instruction_mem
+# Loading work.instruction_mem
+# Refreshing /home/jayawar/Downloads/Single-Cycle-MIPS-Processor/work.register_file
+# Loading work.register_file
+# Refreshing /home/jayawar/Downloads/Single-Cycle-MIPS-Processor/work.ALU32Bit
+# Loading work.ALU32Bit
+# Refreshing /home/jayawar/Downloads/Single-Cycle-MIPS-Processor/work.alu_control
+# Loading work.alu_control
+# Refreshing /home/jayawar/Downloads/Single-Cycle-MIPS-Processor/work.mux2inputs_to_5bit
+# Loading work.mux2inputs_to_5bit
+# Refreshing /home/jayawar/Downloads/Single-Cycle-MIPS-Processor/work.sign_extension
+# Loading work.sign_extension
+# Refreshing /home/jayawar/Downloads/Single-Cycle-MIPS-Processor/work.mux2inputs_to_32bit
+# Loading work.mux2inputs_to_32bit
+# Refreshing /home/jayawar/Downloads/Single-Cycle-MIPS-Processor/work.data_memory
+# Loading work.data_memory
+# Refreshing /home/jayawar/Downloads/Single-Cycle-MIPS-Processor/work.Next_PC
+# Loading work.Next_PC
+# Refreshing /home/jayawar/Downloads/Single-Cycle-MIPS-Processor/work.mux2inputs_to_30bit
+# Loading work.mux2inputs_to_30bit
+# Break in Module testbench at mips_tb.v line 30
+# 0 ps
+# 6331500 ps
+add wave -position insertpoint  \
+sim:/testbench/proc/memory/ram
+restart
+run -all
+# Break in Module testbench at mips_tb.v line 30
